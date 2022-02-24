@@ -81,6 +81,15 @@ class Music {
     this.title = title,
     this.author = author
   }
+
+  download(){
+    let link = document.createElement("a");
+    link.setAttribute('download', `${this.title}`);
+    link.href = `public/sounds/${this.title}.mp3`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
 }
 
 // Creating music objects and storing them in array
@@ -133,7 +142,7 @@ function currentSong(id){
   title.innerHTML = id.title;
   icon.id = id.cover;
   author.innerHTML = id.author;
-  audio.src = `../public/sounds/${id.title}.mp3`;
+  audio.src = `public/sounds/${id.title}.mp3`;
 
 
   label.classList.add('playing');
@@ -219,15 +228,4 @@ audio.addEventListener('ended', nextSong)
 
 
 // Download music
-downloadBtns.forEach(downloadBtn => downloadBtn.addEventListener('click', () => {
-  // Function to get the index of the clicked btn
-  const clickedBtnIndex = 2;
-  const songDownload = songs[clickedBtnIndex].title;
-
-  let link = document.createElement("a");
-  link.setAttribute('download', `${songDownload}`);
-  link.href = `../public/sounds/${songDownload}.mp3`;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-}));
+downloadBtns.forEach(downloadBtn => downloadBtn.addEventListener('click', song.download));
