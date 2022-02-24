@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="public/css/style.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet">
+  </head>
+
+  <body class="body">
+    <div class="fixed">
+      <div class="show-playlist">
+        <i class="fa fa-music"></i>
+      </div>
+      <div class="modes">
+        <div class="mode dark">
+          <i class="fa fa-moon-o"></i>
+        </div>
+        <div class="mode light">
+          <i class="fa fa-sun-o"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="playlist hide">
+      <div class="playlist-title">
+        <!-- Back icon here -->
+        <h1>Media Playlist</h1>
+      </div>
+      <div class="playlist-items">
+        <div class="playlist-item">
+          <div class="playlist-item-icon" id="one">
+          </div>
+          <div class="playlist-item-details">
+            <p class="song-title">Everything We Need</p>
+            <p class="song-author">Kanye West</p>
+            <div class="play-state"></div>
+          </div>
+          <div class="download-btn">
+            <i class="fa fa-download"></i>
+          </div>
+          <div class="fav-icon">
+            <i class="fa fa-heart"></i>
+          </div>
+        </div>
+
+        <div class="playlist-item">
+          <div class="playlist-item-icon" id="two">
+          </div>
+          <div class="playlist-item-details">
+            <p class="song-title">Revenge Of The Dreamers</p>
+            <p class="song-author">J. Cole</p>
+            <div class="play-state"></div>
+          </div>
+          <div class="download-btn">
+            <i class="fa fa-download"></i>
+          </div>
+          <div class="fav-icon">
+            <i class="fa fa-heart"></i>
+          </div>
+        </div>
+
+        <div class="playlist-item">
+          <div class="playlist-item-icon" id="three">
+          </div>
+          <div class="playlist-item-details">
+            <p class="song-title">Summers Over</p>
+            <p class="song-author">Drake</p>
+            <div class="play-state"></div>
+          </div>
+          <div class="download-btn">
+            <i class="fa fa-download"></i>
+          </div>
+          <div class="fav-icon">
+            <i class="fa fa-heart"></i>
+          </div>
+        </div>
+
+        <div class="playlist-item">
+          <div class="playlist-item-icon" id="four">
+          </div>
+          <div class="playlist-item-details">
+            <p class="song-title">Jesus Is Lord</p>
+            <p class="song-author">Kanye West</p>
+            <div class="play-state">
+            </div>
+          </div>
+          <div class="download-btn">
+            <i class="fa fa-download"></i>
+          </div>
+          <div class="fav-icon">
+            <i class="fa fa-heart"></i>
+          </div>
+        </div>
+
+        <div class="playlist-item">
+          <div class="playlist-item-icon" id="five">
+          </div>
+          <div class="playlist-item-details">
+            <p class="song-title">48 Laws</p>
+            <p class="song-author">Omen</p>
+            <div class="play-state"></div>
+          </div>
+          <div class="download-btn">
+            <i class="fa fa-download"></i>
+          </div>
+          <div class="fav-icon">
+            <i class="fa fa-heart"></i>
+          </div>
+        </div>
+
+        <div class="playlist-item">
+          <div class="playlist-item-icon" id="six">
+          </div>
+          <div class="playlist-item-details">
+            <p class="song-title">Mo Money</p>
+            <p class="song-author">J. Cole</p>
+            <div class="play-state"></div>
+          </div>
+          <div class="download-btn">
+            <i class="fa fa-download"></i>
+          </div>
+          <div class="fav-icon">
+            <i class="fa fa-heart"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UI -->
+    <div class="media show">
+
+      <div class="media-title">
+        <p>Your playlist</p>
+        <h1>Music</h1>
+      </div>
+
+      <div class="label music-icon"></div>
+
+      <div class="music-playing">
+        <div class="music-playing-details">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
+        <div class="fav-icon">
+          <i class="fa fa-heart"></i>
+        </div>
+      </div>
+
+      <div class="progress">
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+        <audio src="" id="audio"></audio>
+        <div class="progress-time">
+          <div class="progress-time-played">
+          </div>
+          <div class="progress-time-duration">
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn-dark">
+          <i class="fa fa-backward"></i>
+        </button>
+        <button class="btn-dark">
+          <i class="fa fa-play"></i>
+        </button>
+        <button class="btn-dark">
+          <i class="fa fa-forward"></i>
+        </button>
+      </div>
+    </div>
+    <script src="public/js/index.js"></script>
+  </body>
+
+</html>

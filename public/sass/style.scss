@@ -1,0 +1,307 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+
+%flex-vertical-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+%center-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin bg-image($url) {
+  background: url($url);
+  background-size: contain;
+}
+
+.body {
+  background-color: #0b545d;
+  color: #f4f4f4;
+  padding: 0 5%;
+}
+
+.body-light {
+  background-color: #f4f4f4;
+  color: #0b545d;
+  padding: 0 5%;
+}
+
+.fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+
+  .fa {
+    font-size: 1.25rem;
+  }
+}
+
+.modes {
+  display: flex;
+
+  .dark {
+    padding-right: 1rem;
+  }
+}
+
+h1 {
+  margin: 2rem 0;
+}
+
+.playlist {
+  position: absolute;
+
+  &-item {
+    width: 100%;
+    height: 14vh;
+    display: flex;
+    justify-content: space-between;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: #6ecad0;
+      left: 0;
+    }
+
+    &-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50px;
+      margin: auto 0;
+
+      img {
+        width: 100%;
+
+      }
+    }
+
+    &-details {
+      @extend %flex-vertical-center;
+      width: 60%;
+
+      p {
+        text-align: left;
+      }
+    }
+  }
+
+  .download-btn,
+  .fav-icon {
+    @extend %flex-vertical-center;
+  }
+}
+
+#one {
+  @include bg-image('../images/icon1.jfif');
+}
+
+#two {
+  @include bg-image('../images/icon2.jpg');
+}
+
+#three {
+  @include bg-image('../images/icon3.jpg');
+}
+
+#four {
+  @include bg-image('../images/icon4.jpg');
+}
+
+#five {
+  @include bg-image('../images/icon5.jfif');
+}
+
+#six {
+  @include bg-image('../images/icon6.jpg');
+}
+
+p.song-title {
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+p.song-author {
+  font-size: 1.25rem;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+  width: 90%;
+}
+
+.favorited {
+  color: #e3242b;
+}
+
+// Media UI
+.media {
+  position: absolute;
+  width: 90%;
+  height: 100vh;
+
+  &-title {
+    p {
+      color: #6ecad0;
+      font-size: 1.25rem;
+      margin: 5rem 0 2rem;
+    }
+  }
+}
+
+
+.music-icon {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  margin: 2rem auto;
+  border: 10px solid #6ecad0;
+  animation: rotate 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.music-playing {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  width: 90%;
+  margin: 3rem auto 0;
+
+  &-details {
+
+    p {
+      text-align: left;
+    }
+  }
+}
+
+p.title {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+p.author {
+  font-size: 1rem;
+}
+
+p.author,
+p.title,
+p.song-title,
+p.song-author {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.progress {
+
+  &-container {
+    width: 90%;
+    height: 3px;
+    background-color: #6ecad0;
+    border-radius: 50px;
+    margin: 5px auto;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #378CBF;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-time {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3rem;
+
+  button {
+    outline: none;
+    border: 1px solid #6ecad0;
+    border-radius: 50%;
+    @extend %center-div;
+
+    &:not(:nth-child(2)) {
+      width: 70px;
+      height: 70px;
+      font-size: 2rem;
+    }
+
+    &:nth-child(2) {
+      width: 100px;
+      height: 100px;
+      font-size: 3rem;
+      padding: auto 0;
+    }
+  }
+}
+
+.btn-dark {
+  background-color: #0b545d;
+  color: #6ecad0;
+}
+
+.btn-light {
+  background-color: #f4f4f4;
+  color: #0b545d;
+}
+
+
+.icon {
+  @include bg-image('../images/icon1.jfif');
+}
+
+.playing {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@import 'large-screen';
