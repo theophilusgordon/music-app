@@ -25,7 +25,7 @@ const timeDuration = document.querySelector('.progress-time-duration');
 const downloadBtns = document.querySelectorAll('.fa-download');
 
 
-// Showing and hiding playlist
+// Show and hide playlist on mobile
 playlistIcon.addEventListener('click', () => {
   if(playlist.classList.contains('hide')){
     playlist.classList.remove('hide');
@@ -40,7 +40,7 @@ playlistIcon.addEventListener('click', () => {
   }
 });
 
-// Toggling dark and night modes
+// Toggle dark and night modes
 darkModeIcon.addEventListener('click', () => {
   body.classList.remove('body-light');
   body.classList.add('body');
@@ -61,17 +61,6 @@ lightModeIcon.addEventListener('click', () => {
   });
 });
 
-// Changing hearts (favorite icons) color on click
-hearts.forEach(heart => {
-  heart.addEventListener('click', () => {
-    if(heart.classList.contains('favorited')){
-      heart.classList.remove('favorited');
-    } else {
-      heart.classList.add('favorited');
-    }
-  })
-});
-
 
 // Music Constructor
 class Music {
@@ -82,7 +71,7 @@ class Music {
     this.author = author
   }
 
-  download(){
+  download(title){
     let link = document.createElement("a");
     link.setAttribute('download', `${this.title}`);
     link.href = `public/sounds/${this.title}.mp3`;
@@ -92,7 +81,7 @@ class Music {
   }
 }
 
-// Creating music objects and storing them in array
+// Create music objects and store them in array
 const everythingWeNeed = new Music(0, 'one', 'Everything We Need', 'Kanye West');
 const revengeOfTheDreamers = new Music(1, 'two', 'Revenge Of The Dreamers', 'J. Cole');
 const summersOver = new Music(2, 'three', 'Summers Over', 'Drake');
@@ -113,7 +102,7 @@ window.addEventListener('load', () => {
   audio.pause();
 });
 
-// Updating UI with songs
+// Update UI with songs
 function currentSong(id){
   function updateProgress (e){
     const {duration, currentTime} = e.srcElement;
@@ -158,14 +147,12 @@ songTitles.forEach(songTitle => {
       if(song.title === songTitle.innerText){
         currentSong(songs[song.id]);
         audio.play();
-        
-        // uiHeart.style.color = heart.style.color;
       }
     });
   })
 });
 
-// Toggling play and pause
+// Toggle play and pause
 playBtn.addEventListener('click', () => {
   if(playBtn.classList.contains('fa-play')){
     playBtn.classList.remove('fa-play');
@@ -182,31 +169,33 @@ playBtn.addEventListener('click', () => {
 
 // Previous and next operations
 function previousSong(){
-  songs.forEach(song => {
-    if(title.innerText === song.title){
-      if(song.id < 0){
-        currentSong(songs[songs.length - 1])
-      } else {
-        currentSong(songs[song.id--]);
-      }
-    }
 
-      audio.play()
-    });
+  const currentSongTitle = document.querySelector('.title').innerText;
+  const currentlyPlaying = songs.find(song => song.title === currentSongTitle);
+  const index = songs.indexOf(currentlyPlaying);
+
+  if((index-1) < 0){
+    currentSong(songs[songs.length - 1]);
+    audio.play();
+  } else {
+    currentSong(songs[index-1])
+    audio.play();
+  }
 }
 
 function nextSong(){
-  songs.forEach(song => {
-    if(title.innerText === song.title){
-      if(song.id > songs.length - 1){
-        currentSong(songs[0])
-      } else {
-        currentSong(songs[song.id++]);
-      }
-    }
 
-      audio.play();
-    });
+  const currentSongTitle = document.querySelector('.title').innerText;
+  const currentlyPlaying = songs.find(song => song.title === currentSongTitle);
+  const index = songs.indexOf(currentlyPlaying);
+
+  if((index+1) > songs.length - 1){
+    currentSong(songs[0]);
+    audio.play();
+  } else {
+    currentSong(songs[index+1])
+    audio.play();
+  }
 }
 
 prevBtn.addEventListener('click', previousSong);
@@ -214,9 +203,9 @@ prevBtn.addEventListener('click', previousSong);
 nextBtn.addEventListener('click', nextSong);
 
 
-// Seeking
+// Seek
 progressContainer.addEventListener('click', (e) => {
-  const width = 321;
+  const width = 321; //Get width from DOM
   const clickX = e.offsetX;
   const duration = audio.duration;
 
@@ -228,4 +217,19 @@ audio.addEventListener('ended', nextSong)
 
 
 // Download music
-downloadBtns.forEach(downloadBtn => downloadBtn.addEventListener('click', song.download));
+downloadBtns.forEach(downloadBtn => downloadBtn.addEventListener('click', function(e){
+  const clickedButtonSong = songs[(Array.from(downloadBtns).indexOf(e.target))]; 
+
+  clickedButtonSong.download(clickedButtonSong.title);
+}));
+
+
+// Favorite states
+hearts.forEach(heart => heart.addEventListener('click', function like(){
+    if(heart.classList.contains('favorited')){
+      heart.classList.remove('favorited');
+    } else {
+      heart.classList.add('favorited');
+    }
+  }
+));
